@@ -24,6 +24,9 @@ function setup() {
 	toolbox.addTool(new LineToTool());
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
+	toolbox.addTool(new RectangleDrawTool());
+	toolbox.addTool(new ellipseDrawTool());
+	toolbox.addTool(new triangleDrawTool());
 	background(255);
 
 }
