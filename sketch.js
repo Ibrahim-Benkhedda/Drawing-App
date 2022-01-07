@@ -6,6 +6,7 @@ var helpers = null;
 
 // images
 var crystal_img;
+var c;
 
 function preload() {
 	crystal_img = loadImage('./assets/crystal.png');
@@ -16,7 +17,7 @@ function setup() {
 
 	//create a canvas to fill the content div from index.html
 	canvasContainer = select('#content');
-	var c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
+	c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
 	c.parent("content");
 
 	//create helper functions and the colour palette
@@ -34,7 +35,9 @@ function setup() {
 	toolbox.addTool(new RectangleDrawTool());
 	toolbox.addTool(new ellipseDrawTool());
 	toolbox.addTool(new triangleDrawTool());
+	toolbox.addTool(new editableShapeTool());
 	toolbox.addTool(new stampTool());
+
 	background(255);
 
 }
