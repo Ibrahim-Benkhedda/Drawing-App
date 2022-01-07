@@ -4,6 +4,13 @@ var toolbox = null;
 var colourP = null;
 var helpers = null;
 
+// images
+var crystal_img;
+
+function preload() {
+	crystal_img = loadImage('./assets/crystal.png');
+}
+
 
 function setup() {
 
@@ -27,6 +34,7 @@ function setup() {
 	toolbox.addTool(new RectangleDrawTool());
 	toolbox.addTool(new ellipseDrawTool());
 	toolbox.addTool(new triangleDrawTool());
+	toolbox.addTool(new stampTool());
 	background(255);
 
 }
