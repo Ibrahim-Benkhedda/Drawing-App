@@ -9,6 +9,8 @@ function editableShapeTool() {
   this.icon = "./assets/polygon.jpg";
   this.name = "EditableShape";
 
+  self = this
+
   let editButton;
   let finishButton;
 
@@ -25,6 +27,9 @@ function editableShapeTool() {
   editButton = createButton('Edit Shape');
   editButton.parent('#editShapeControl');
 
+  finishButton = createButton('Finish Shape');
+  finishButton.parent('#editShapeControl');
+
   // a function that switches the Edit mode around ON/OFF
   editButton.mousePressed(function() {
     // changes Edit mode to off when edit mode is on and changes the HTML Text
@@ -40,18 +45,18 @@ function editableShapeTool() {
 
   })
 
-  finishButton = createButton('Finish Shape');
-  finishButton.parent('#editShapeControl');
+
 
 
   // when mouse is pressed
   finishButton.mousePressed(function() {
     // save the canvas in the current state and clear out the array of vertices
     editMode = false;
-    this.draw();
+    self.draw();
 
     loadPixels();
     currentShape = [];
+
 
   })
 
