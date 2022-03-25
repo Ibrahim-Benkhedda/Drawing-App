@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="lib/p5.min.js"></script>
-    <script src="lib/p5.dom.js"></script>
+    <script src="lib/p5.js"></script>
+    <!-- <script src="lib/p5.dom.js"></script> -->
+
+    <!-- Pickr Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
     <script src="sketch.js"></script>
 
@@ -10,6 +13,7 @@
     <script src="toolbox.js"></script>
     <script src="colourPalette.js"></script>
     <script src="helperFunctions.js"></script>
+    <script src="SwitchStates.js"></script>
 
     <!-- tools -->
     <script src="freehandTool.js"></script>
@@ -21,7 +25,10 @@
     <script src="triangleDrawTool.js"></script>
     <script src="stampTool.js"></script>
     <script src="editableShapeTool.js"></script>
+    <script src="scissorsTool.js"></script>
+    <script src="colourPicker.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -30,6 +37,8 @@
 
         <button id="clearButton">Clear</button>
         <button id="saveImageButton">Save Image</button>
+        <button id="undoCanvasButton">Undo </button>
+        <button id="redoCanvasButton">Redo </button>
       </div>
       <div class="box" id="sidebar"></div>
       <div id="content"></div>
@@ -38,7 +47,10 @@
         <div id="xSlider">size: </div>
         <div id="nSlider">number: </div>
         <div id="editShapeControl"> works with editable Shape only </div>
+        <div id="scissors-tool">works with scissors Tool only </div>
+        <div class="color-picker"></script>
       </div>
+
 
 	</div>
   </body>

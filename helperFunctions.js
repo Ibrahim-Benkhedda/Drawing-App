@@ -18,6 +18,35 @@ function HelperFunctions() {
 		saveCanvas("myPicture", "jpg");
 	});
 
+	// event handler for the undo canvas button. undo the canvas state to the
+	// previous state
+	select('#undoCanvasButton').mouseClicked(function() {
+		switchCanvas.undoState();
+	})
+	// event handler for the redo canvas button. redo the canvas state to the
+	// previous state
+	select('#redoCanvasButton').mouseClicked(function() {
+		switchCanvas.redoState();
+	})
+
+	c.mousePressed(function() {
+		if (toolbox.selectedTool.name == "Scissors") {
+			// console.log(`mouseX : ${scissor.selectedArea_x}, mouseY : ${scissor.selectedArea_y}`);
+			if (scissor.selectMode == 1) {
+				scissor.selectedArea_x = mouseX;
+				scissor.selectedArea_y = mouseY;
+			}
+		}
+
+		// set the properties of switchCanvas class to default
+		if (switchCanvas.previousStates.length > switchCanvas.n) {
+	  	switchCanvas.default();
+	  }
+		// when mouse is clicked, save the state of the canvas
+	  switchCanvas.saveState();
+
+	})
+
 
 
 }
