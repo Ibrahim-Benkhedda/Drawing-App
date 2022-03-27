@@ -147,6 +147,7 @@ class FiltersTool {
 
   // REFRENCE: ASCII FILTER P439 PDF CREATING PROCEDURAL PROCESSING
   asciiPixels() {
+    textSize(10);
     for (let y = 0; y < c.height; y += 10) {
       for (let x = 0; x < c.width; x += 10) {
         let b = brightness(get(x, y))

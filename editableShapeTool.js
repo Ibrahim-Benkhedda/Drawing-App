@@ -9,7 +9,7 @@ function editableShapeTool() {
   this.icon = "./assets/polygon.jpg";
   this.name = "EditableShape";
 
-  self = this
+  let self = this
 
   let editButton;
   let finishButton;
@@ -85,9 +85,13 @@ function editableShapeTool() {
   this.populateOptions = function() {
     // creates HTML
     editButton = createButton('Edit Shape');
+    editButton.size(125, 50);
+    editButton.position(400, windowHeight - 100);
 
 
     finishButton = createButton('Finish Shape');
+    finishButton.size(125, 50);
+    finishButton.position(550, windowHeight - 100);
 
     // a function that switches the Edit mode around ON/OFF
     editButton.mousePressed(function() {
@@ -95,6 +99,7 @@ function editableShapeTool() {
       if (editMode) {
         editMode = false;
         editButton.html('Edit Shape')
+
 
 
       } else {
@@ -112,7 +117,8 @@ function editableShapeTool() {
 
       loadPixels();
       currentShape = [];
-
+      editMode = false;
+      editButton.html('Edit Shape');
 
     })
   }
