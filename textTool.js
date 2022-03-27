@@ -120,11 +120,11 @@ class TextTool {
     this.populateOptions = function() {
       inputT = createInput();
       inputT.size(350, 50);
-      inputT.position(25, 500);
+      inputT.position(400, windowHeight - 132.5);
 
       // drop down menu to select a font
       selectFont = createSelect();
-      selectFont.position(30, 560);
+      selectFont.position(410, windowHeight - 70);
       selectFont.size(200, 35)
       for (let i in fontList) {
         let name = fontList[i]
@@ -133,30 +133,40 @@ class TextTool {
 
       // create button to display the input text
       button = createButton('GENERATE');
-      button.position(400, 500);
+      button.position(775, windowHeight - 130);
       button.size(100, 50)
       button.mousePressed(inputText);
 
       // HEADER for the text insert
       textInsert = createElement('h3', 'Type here: ');
-      textInsert.position(30, 450);
+      textInsert.position(400, windowHeight - 170);
 
       // font size slider
       sizeSlider = createSlider(8, 256, 16, 1);
-      sizeSlider.position(50, 620);
+      sizeSlider.position(450, windowHeight - 25);
       sizeSlider.style('width', '256px');
 
       sizeDisplay = createP('');
-      sizeDisplay.position(325, 602.5);
+      sizeDisplay.position(425, windowHeight - 40);
 
       // create drop down menu to select text style
       selectStyle = createSelect();
-      selectStyle.position(245, 562.5);
+      selectStyle.position(625, windowHeight - 67.5);
       selectStyle.size(125, 30);
       for (let i in styleList) {
         let name = styleList[i]
         selectStyle.option(name);
       }
+    }
+
+    this.unselectTool = function() {
+      inputT.hide();
+      selectFont.hide();
+      button.hide();
+      textInsert.hide();
+      sizeSlider.hide();
+      sizeDisplay.hide();
+      selectStyle.hide();
     }
 
   }

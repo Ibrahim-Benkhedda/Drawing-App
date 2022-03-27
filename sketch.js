@@ -35,16 +35,17 @@ function setup() {
 	//add the tools to the toolbox.
 	toolbox.addTool(new FreehandTool());
 	toolbox.addTool(new LineToTool());
-	toolbox.addTool(bezierTool);
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
+	
 	toolbox.addTool(new RectangleDrawTool());
 	toolbox.addTool(new ellipseDrawTool());
 	toolbox.addTool(new triangleDrawTool());
-	toolbox.addTool(new editableShapeTool());
 
-	toolbox.addTool(new stampTool());
+	toolbox.addTool(new editableShapeTool());
 	toolbox.addTool(new FiltersTool());
+	toolbox.addTool(bezierTool);
+	toolbox.addTool(new stampTool());
 	toolbox.addTool(new TextTool());
 
 	switchCanvas = new SwitchStates();
