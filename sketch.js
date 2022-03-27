@@ -1,16 +1,11 @@
 //global variables that will store the toolbox colour palette
 //amnd the helper functions
-
-import BezierDrawTool from "BezierDrawTool.js"
-
-
 var toolbox = null;
 var colourP = null;
 var helpers = null;
 var switchCanvas = null;
 
 var bezierTool;
-var bezierTool
 
 // images
 var crystal_img;
@@ -42,7 +37,7 @@ function setup() {
 	toolbox.addTool(new LineToTool());
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
-	
+
 	toolbox.addTool(new RectangleDrawTool());
 	toolbox.addTool(new ellipseDrawTool());
 	toolbox.addTool(new triangleDrawTool());

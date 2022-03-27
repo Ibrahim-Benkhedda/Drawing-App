@@ -1,3 +1,6 @@
+/* // https://uigradients.com/#Lawrencium */
+
+
 html, body {
   margin: 0px;
   height: 100%;
@@ -12,10 +15,20 @@ p {
 }
 
 .nav-btn {
-  margin-left: 5px;
+  cursor: pointer;
+  transition-duration: 250ms;
   background-color: e7e7e7;
   color: black;
 }
+
+.nav-btn:hover {
+  transition-duration: 250ms;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  background-color: #001A38;
+  color: white;
+}
+
 #sidebar {
 	grid-area: sidebar;
 	overflow-y: scroll;
@@ -82,12 +95,33 @@ p {
   color: #444;
 }
 .box {
-  background-color: #444;
+  background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+  background-color: #1F1D36;
   color: #fff;
   font-size: 150%;
 }
 
 .header {
-  background-color: #444;
+  background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+  background-color: #1F1D36;
 
+}
+
+#title {
+  transition-duration: 500ms;
+  font-size: 16px;
+  margin-left: 15px;
+  margin-top: 2px;
+  padding-top: 15px;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+#title:hover {
+  transition-duration: 500ms;
+  letter-spacing: 15px;
+}
+
+#clearButton {
+  margin-left: 50px;
 }

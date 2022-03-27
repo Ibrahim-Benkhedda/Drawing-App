@@ -1,3 +1,5 @@
+// https://editor.p5js.org/jeyv/sketches/6RCdX801A
+
 function triangleDrawTool() {
   this.icon = "assets/triangle.jpg";
   this.name = "Triangle";
@@ -25,7 +27,9 @@ function triangleDrawTool() {
         updatePixels();
         // draw the Triangle
         noFill();
-        strokeWeight(2);
+        strokeWeight(5);
+
+        
         triangle(
           startMouseX,
           startMouseY,

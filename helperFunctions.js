@@ -39,4 +39,18 @@ function HelperFunctions() {
 	  switchCanvas.saveState();
 	})
 
+
+	this.mousePressOnCanvas = function(canvas) {
+		// detects if the mouse is press is on the canvas or not
+		if (
+			mouseX > canvas.elt.offsetLeft && mouseX < (canvas.elt.offsetLeft + canvas.width) &&
+			mouseY > canvas.elt.offsetTop  && mouseY < (canvas.elt.offsetTop  + canvas.height)
+		) {
+			// the mouse pressed is on the canvas therefore, returns true
+			return true
+		}
+		// the mouse pressed is not on the canvas therefore, returns false
+		return false;
+	}
+
 }

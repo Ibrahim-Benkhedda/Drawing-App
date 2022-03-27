@@ -1,17 +1,4 @@
 
-function mousePressOnCanvas(c) {
-  if (
-			mouseX > c.elt.offsetLeft && mouseX < (c.elt.offsetLeft + c.width) &&
-			mouseY > c.elt.offsetTop  && mouseY < (c.elt.offsetTop  + c.height)
-		) {
-			// the mouse pressed is on the canvas therefore, returns true
-			return true
-		}
-		// the mouse pressed is not on the canvas therefore, returns false
-		return false;
-}
-
-
 // draws bezier curve
 
 class BezierDrawTool {
@@ -40,7 +27,7 @@ class BezierDrawTool {
     let x1, x2, y1, y2;
 
     this.draw = function() {
-      if (mouseIsPressed && mousePressOnCanvas(c)) {
+      if (mouseIsPressed && helpers.mousePressOnCanvas(c)) {
 
         if (startMouseX == - 1) {
           startMouseX = mouseX;
@@ -155,6 +142,9 @@ class BezierDrawTool {
           }
         }
       }
+
+
+      stroke(`${colourP.selectedColour}`);
 
       // function that draws bezier cruve
       bezier(startX, startY, x1, y1, x2, y2, endX, endY);

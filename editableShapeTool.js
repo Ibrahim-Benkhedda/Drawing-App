@@ -23,25 +23,11 @@ function editableShapeTool() {
   // loads the pixels
   loadPixels();
 
-
-  // detects whether the mouse is pressed on the canvas
-	this.mousePressOnCanvas = function(canvas) {
-		// detects if the mouse is press is on the canvas or not
-		if (
-			mouseX > canvas.elt.offsetLeft && mouseX < (canvas.elt.offsetLeft + canvas.width) &&
-			mouseY > canvas.elt.offsetTop  && mouseY < (canvas.elt.offsetTop  + canvas.height)
-		) {
-			// the mouse pressed is on the canvas therefore, returns true
-			return true
-		}
-		// the mouse pressed is not on the canvas therefore, returns false
-		return false;
-	}
-
   // Draws the shape
   this.draw = function() {
     updatePixels();
-    if (mouseIsPressed && this.mousePressOnCanvas(c)) {
+    if (mouseIsPressed && helpers.mousePressOnCanvas(c)) {
+      console.log('mousepressedoncanvas')
       // when the Edit mode is false
       if (!editMode) {
         // pushes the X and Y coordinate of the mouse to the vertex to the currentShape Array
@@ -86,12 +72,12 @@ function editableShapeTool() {
     // creates HTML
     editButton = createButton('Edit Shape');
     editButton.size(125, 50);
-    editButton.position(400, windowHeight - 100);
+    editButton.position(350, windowHeight - 125);
 
 
     finishButton = createButton('Finish Shape');
     finishButton.size(125, 50);
-    finishButton.position(550, windowHeight - 100);
+    finishButton.position(500, windowHeight - 125);
 
     // a function that switches the Edit mode around ON/OFF
     editButton.mousePressed(function() {

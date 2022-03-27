@@ -1,16 +1,3 @@
-function mousePressOnCanvas(c) {
-  if (
-			mouseX > c.elt.offsetLeft && mouseX < (c.elt.offsetLeft + c.width) &&
-			mouseY > c.elt.offsetTop  && mouseY < (c.elt.offsetTop  + c.height)
-		) {
-			// the mouse pressed is on the canvas therefore, returns true
-			return true
-		}
-		// the mouse pressed is not on the canvas therefore, returns false
-		return false;
-}
-
-// function that gets the input text of the user
 
 
 function stampTool() {
@@ -64,7 +51,8 @@ function stampTool() {
     imgSizeVal = imgSizeSlider.value();
     nImgVal = nImgSlider.value();
 
-    if (mouseIsPressed && mousePressOnCanvas(c)) {
+    if (mouseIsPressed && helpers.mousePressOnCanvas(c)) {
+      console.log('mouse pressed on canvas');
       // count the number of img to draw
       for (let i = 0; i < nImgSlider.value(); i++) {
         let imgSize = imgSizeSlider.value();

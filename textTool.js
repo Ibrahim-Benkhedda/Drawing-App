@@ -1,18 +1,3 @@
-function mousePressOnCanvas(c) {
-  if (
-			mouseX > c.elt.offsetLeft && mouseX < (c.elt.offsetLeft + c.width) &&
-			mouseY > c.elt.offsetTop  && mouseY < (c.elt.offsetTop  + c.height)
-		) {
-			// the mouse pressed is on the canvas therefore, returns true
-			return true
-		}
-		// the mouse pressed is not on the canvas therefore, returns false
-		return false;
-}
-
-// function that gets the input text of the user
-
-
 
 class TextTool {
 
@@ -108,7 +93,7 @@ class TextTool {
         currentStyle == 'BOLDITALIC' ? textStyle(BOLDITALIC) : textStyle(NORMAL);
       // display the INPUT text
       if (mouseIsPressed) {
-        if (str != null && mousePressOnCanvas(c)) {
+        if (str != null && helpers.mousePressOnCanvas(c)) {
           console.log('drawing')
           textSize(currentSize);
           fill(0);

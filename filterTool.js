@@ -1,22 +1,8 @@
 // https://github.com/shiffman/LearningProcessing/blob/master/chp15_images_pixels/exercise_15_07_image_processing/exercise_15_07_image_processing.pde
 
-
-let blurSlider;
-let posterizeSlider;
-
-let filters = [
-  {name: 'Invert'},
-  {name: 'Blur', slider() {blurSlider.show(); posterizeSlider.hide()}},
-  {name: 'Posterize', slider() {posterizeSlider.show(); blurSlider.hide()}},
-  {name: 'Erode'},
-  {name: 'Gray'},
-  {name: 'ASCII'}
-]
-
 class FiltersTool {
   // store all possible avaible filters and if the filter have slider,
   // it stores slider method which enable the current filter slider and hide others
-
 
   constructor() {
 
@@ -24,95 +10,132 @@ class FiltersTool {
     // public properties
     this.name = "FilterTool";
     this.icon = "assets/filter.jpg";
-    this.isPressed;
+    let isPressed;
     // private
-    this.selectFilter;
-    this.commitFilterBtn;
-    this.id;
+    let selectFilter;
+    let commitFilterBtn;
+
+    let blurSlider;
+    let posterizeSlider;
+
+    let filters = [
+      {name: 'Invert'},
+      {name: 'Blur', slider() {blurSlider.show(); posterizeSlider.hide()}},
+      {name: 'Posterize', slider() {posterizeSlider.show(); blurSlider.hide()}},
+      {name: 'Erode'},
+      {name: 'Gray'},
+      {name: 'ASCII'}
+    ]
+
+    // COMMIT THE FILTER TO THE CANVAS
+    this.draw = function() {
+      // store the current filter name
+      let name = selectFilter.value();; // identitfy the name of the filter
+
+      // if the user pressed the commit button, display and commit the current filter
+      // in the canvas
+      for (let i in filters) {
+        // checks if a filter have sliders
+        if (filters[i].name == name && 'slider' in filters[i]) {
+          // display the filter sliders/HTML elements in the UI and break from the loop
+          console.log('has slider');
+          filters[i].slider();
+          break;
+        }
+        // if the filter doesn't have slider
+        else if (!('slider' in filters[i])) {
+          // hide sliders
+          blurSlider .hide();
+          posterizeSlider.hide();
+        }
+      }
+
+
+      if (isPressed) {
+        console.log('condition activated')
+        // --- chekcs the id which is the name of the filter and call filter's function --- //
+        switch (name) {
+          case 'Invert':
+            console.log('INVERT Activated...');
+            this.invertPixels();
+            break;
+          case 'Blur':
+            console.log('BLUR...');
+            this.blurPixels();
+            break;
+          case 'Posterize':
+            console.log('Posterize...')
+            this.posterizePixels(10)
+            break;
+          case 'Erode':
+            console.log('ERODE...')
+            this.erodePixels(125);
+            break;
+          case 'Gray':
+            console.log('GRAY...')
+            this.grayPixels();
+            break;
+          case 'ASCII':
+            console.log('ASCII...');
+            this.asciiPixels();
+            break;
+          default:
+            // return null;
+            console.log('NOTHING...');
+        }
+
+        isPressed = false;
+      }
+
+      // chekcs if the user clicked on the commit button then set isPressed boolean
+      // variable to true
+      commitFilterBtn.mousePressed(() => isPressed = true);
+
+      return true
+    }
 
     this.populateOptions = function() {
-      this.xpopulateOptions();
-    }
-    this.draw = function() {
-      this.xdraw();
+      // DOM for drop down menu
+      selectFilter = createSelect();
+      selectFilter.size(100, 35);
+      selectFilter.position(400, windowHeight - 125);
+
+      // Display all the possible filters in the drop down menu from the filters
+      // array of objects
+      for (let i in filters) {
+        selectFilter.option(`${filters[i].name}`);
+      }
+
+      // DOM for Commit button
+      commitFilterBtn = createButton('Draw Filter');
+      commitFilterBtn.position(500, windowHeight - 125);
+      commitFilterBtn.size(200, 35);
+
+      // FILTERS HTML ELEMENTS
+
+      // BLUR DOM
+      blurSlider  = createSlider(0, 4);
+      blurSlider.position(410, windowHeight - 75);
+      blurSlider.size(300);
+      blurSlider.hide();
+
+      // POSTERIZE DOM
+      posterizeSlider = createSlider(2, 255);
+      posterizeSlider.position(410, windowHeight - 75);
+      posterizeSlider.size(300);
+      posterizeSlider.hide();
     }
 
     this.unselectTool = function() {
       blurSlider.hide();
       posterizeSlider.hide();
-      self.selectFilter.hide();
-      self.commitFilterBtn.hide();
+      selectFilter.hide();
+      commitFilterBtn.hide();
     }
 
   }
 
 
-  // COMMIT THE FILTER TO THE CANVAS
-  xdraw() {
-    // store the current filter name
-    let name = self.selectFilter.value();; // identitfy the name of the filter
-
-    // if the user pressed the commit button, display and commit the current filter
-    // in the canvas
-    for (let i in filters) {
-      // checks if a filter have sliders
-      if (filters[i].name == name && 'slider' in filters[i]) {
-        // display the filter sliders/HTML elements in the UI and break from the loop
-        console.log('has slider');
-        filters[i].slider();
-        break;
-      }
-      // if the filter doesn't have slider
-      else if (!('slider' in filters[i])) {
-        // hide sliders
-        blurSlider .hide();
-        posterizeSlider.hide();
-      }
-    }
-
-
-    if (self.isPressed) {
-      console.log('condition activated')
-      // --- chekcs the id which is the name of the filter and call filter's function --- //
-      switch (name) {
-        case 'Invert':
-          console.log('INVERT Activated...');
-          this.invertPixels();
-          break;
-        case 'Blur':
-          console.log('BLUR...');
-          this.blurPixels();
-          break;
-        case 'Posterize':
-          console.log('Posterize...')
-          this.posterizePixels(10)
-          break;
-        case 'Erode':
-          console.log('ERODE...')
-          this.erodePixels(125);
-          break;
-        case 'Gray':
-          console.log('GRAY...')
-          this.grayPixels();
-          break;
-        case 'ASCII':
-          console.log('ASCII...');
-          this.asciiPixels();
-          break;
-        default:
-          // return null;
-          console.log('NOTHING...');
-      }
-
-      self.isPressed = false;
-    }
-
-    // chekcs if the user clicked on the commit button then set isPressed boolean
-    // variable to true
-    self.commitFilterBtn.mousePressed(() => self.isPressed = true);
-
-    return true
-  }
 
   //  --- ALL FILTERS FUNCTIONALITY --- //
 
@@ -123,7 +146,7 @@ class FiltersTool {
 
   blurPixels() {
     console.log('blurring...')
-    let val = blurSlider .value();
+    let val = blurSlider.value();
     filter(BLUR, val);
   }
 
@@ -164,39 +187,6 @@ class FiltersTool {
         }
       }
     }
-  }
-
-  // creates HTML Elements
-  xpopulateOptions() {
-    // DOM for drop down menu
-    self.selectFilter = createSelect();
-    self.selectFilter.size(100, 35);
-    self.selectFilter.position(400, 800);
-
-    // Display all the possible filters in the drop down menu from the filters
-    // array of objects
-    for (let i in filters) {
-      self.selectFilter.option(`${filters[i].name}`);
-    }
-
-    // DOM for Commit button
-    self.commitFilterBtn = createButton('Draw Filter');
-    self.commitFilterBtn.position(500, 800);
-    self.commitFilterBtn.size(200, 25);
-
-    // FILTERS HTML ELEMENTS
-
-    // BLUR DOM
-    blurSlider  = createSlider(0, 4);
-    blurSlider.position(410, 850);
-    blurSlider.size(300);
-    blurSlider.hide();
-
-    // POSTERIZE DOM
-    posterizeSlider = createSlider(2, 255);
-    posterizeSlider.position(410, 850);
-    posterizeSlider.size(300);
-    posterizeSlider.hide();
   }
 
 
