@@ -1,5 +1,9 @@
 //global variables that will store the toolbox colour palette
 //amnd the helper functions
+
+import BezierDrawTool from "BezierDrawTool.js"
+
+
 var toolbox = null;
 var colourP = null;
 var helpers = null;
