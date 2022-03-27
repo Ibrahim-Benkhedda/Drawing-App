@@ -5,7 +5,7 @@ var colourP = null;
 var helpers = null;
 var switchCanvas = null;
 
-var scissor;
+var bezierTool;
 
 // images
 var crystal_img;
@@ -30,11 +30,12 @@ function setup() {
 	//create a toolbox for storing the tools
 	toolbox = new Toolbox();
 
-	scissor = new scissorsTool();
+	bezierTool = new BezierDrawTool();
 
 	//add the tools to the toolbox.
 	toolbox.addTool(new FreehandTool());
 	toolbox.addTool(new LineToTool());
+	toolbox.addTool(bezierTool);
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new RectangleDrawTool());
@@ -43,8 +44,8 @@ function setup() {
 	toolbox.addTool(new editableShapeTool());
 
 	toolbox.addTool(new stampTool());
-	toolbox.addTool(scissor);
-
+	toolbox.addTool(new FiltersTool());
+	toolbox.addTool(new TextTool());
 
 	switchCanvas = new SwitchStates();
 
@@ -65,13 +66,15 @@ function draw() {
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
+
 }
 
 
-function mouseDragged() {
-  if (toolbox.selectedTool.name == "Scissors") {
-    	scissor.drag(mouseX, mouseY);
-
+function mouseReleased() {
+  // // when the user draw for the first time or after commiting the bezier curve to the canvas
+  // // set the default settings to false
+  if (toolbox.selectedTool.hasOwnProperty('switch')) {
+    toolbox.selectedTool.switch();
   }
 }
 

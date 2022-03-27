@@ -29,21 +29,19 @@ function HelperFunctions() {
 		switchCanvas.redoState();
 	})
 
+	// if mouse is pressed on the canvas
 	c.mousePressed(function() {
-		if (toolbox.selectedTool.name == "Scissors") {
-			// console.log(`mouseX : ${scissor.selectedArea_x}, mouseY : ${scissor.selectedArea_y}`);
-			if (scissor.selectMode == 1) {
-				scissor.selectedArea_x = mouseX;
-				scissor.selectedArea_y = mouseY;
-			}
-		}
-
 		// set the properties of switchCanvas class to default
 		if (switchCanvas.previousStates.length > switchCanvas.n) {
 	  	switchCanvas.default();
 	  }
 		// when mouse is clicked, save the state of the canvas
 	  switchCanvas.saveState();
+
+		// if (self.editMode & self.defaultSettings) {
+		// 	self.defaultSettings = false;
+		//   console.log('EDIT MODE IS ON ...');
+		// })
 
 	})
 

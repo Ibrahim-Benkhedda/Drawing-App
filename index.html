@@ -18,6 +18,7 @@
     <!-- tools -->
     <script src="freehandTool.js"></script>
     <script src="lineToTool.js"></script>
+    <script src="BezierDrawTool.js"></script>
     <script src="sprayCanTool.js"></script>
     <script src="mirrorDrawTool.js"></script>
     <script src="rectangleDrawTool.js"></script>
@@ -25,15 +26,18 @@
     <script src="triangleDrawTool.js"></script>
     <script src="stampTool.js"></script>
     <script src="editableShapeTool.js"></script>
-    <script src="scissorsTool.js"></script>
     <script src="colourPicker.js"></script>
+    <script src="filterTool.js"></script>
+    <script src="TextTool.js"></script>
+
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
   	<div class="wrapper">
-      <div class="box header">Drawing App
+      <div class="box header">ARTICS
 
         <button id="clearButton">Clear</button>
         <button id="saveImageButton">Save Image</button>
@@ -44,10 +48,6 @@
       <div id="content"></div>
       <div class="box colourPalette"></div>
       <div class="box options">
-        <div id="xSlider">size: </div>
-        <div id="nSlider">number: </div>
-        <div id="editShapeControl"> works with editable Shape only </div>
-        <div id="scissors-tool">works with scissors Tool only </div>
         <div class="color-picker"></script>
       </div>
 

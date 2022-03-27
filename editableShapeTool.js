@@ -23,42 +23,6 @@ function editableShapeTool() {
   // loads the pixels
   loadPixels();
 
-  // creates HTML
-  editButton = createButton('Edit Shape');
-  editButton.parent('#editShapeControl');
-
-  finishButton = createButton('Finish Shape');
-  finishButton.parent('#editShapeControl');
-
-  // a function that switches the Edit mode around ON/OFF
-  editButton.mousePressed(function() {
-    // changes Edit mode to off when edit mode is on and changes the HTML Text
-    if (editMode) {
-      editMode = false;
-      editButton.html('Edit Shape')
-
-
-    } else {
-      editMode = true;
-      editButton.html('Add Vertices')
-    }
-
-  })
-
-
-
-
-  // when mouse is pressed
-  finishButton.mousePressed(function() {
-    // save the canvas in the current state and clear out the array of vertices
-    editMode = false;
-    self.draw();
-
-    loadPixels();
-    currentShape = [];
-
-
-  })
 
   // detects whether the mouse is pressed on the canvas
 	this.mousePressOnCanvas = function(canvas) {
@@ -116,6 +80,46 @@ function editableShapeTool() {
     }
     endShape();
 
+  }
+
+  this.populateOptions = function() {
+    // creates HTML
+    editButton = createButton('Edit Shape');
+
+
+    finishButton = createButton('Finish Shape');
+
+    // a function that switches the Edit mode around ON/OFF
+    editButton.mousePressed(function() {
+      // changes Edit mode to off when edit mode is on and changes the HTML Text
+      if (editMode) {
+        editMode = false;
+        editButton.html('Edit Shape')
+
+
+      } else {
+        editMode = true;
+        editButton.html('Add Vertices')
+      }
+
+    })
+
+    // when mouse is pressed
+    finishButton.mousePressed(function() {
+      // save the canvas in the current state and clear out the array of vertices
+      editMode = false;
+      self.draw();
+
+      loadPixels();
+      currentShape = [];
+
+
+    })
+  }
+
+  this.unselectTool = function() {
+    finishButton.hide();
+    editButton.hide();
   }
 
 }
