@@ -23,7 +23,7 @@ class FiltersTool {
     self = this
     // public properties
     this.name = "FilterTool";
-    this.icon = "./assets/filter.jpg";
+    this.icon = "assets/filter.jpg";
     this.isPressed;
     // private
     this.selectFilter;
