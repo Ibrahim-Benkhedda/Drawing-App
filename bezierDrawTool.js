@@ -16,7 +16,7 @@ function mousePressOnCanvas(c) {
 
 class BezierDrawTool {
   constructor() {
-    this.icon = "./assets/vector.jpg";
+    this.icon = "assets/vector.jpg";
     this.name = "BezierCurve";
 
     let startMouseX = -1;
