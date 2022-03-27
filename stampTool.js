@@ -14,7 +14,7 @@ function mousePressOnCanvas(c) {
 
 
 function stampTool() {
-  this.icon = "assets/stamp.png";
+  this.icon = "assets/stamp.jpg";
   this.name = "Stamp";
 
   let imgSizeSlider;
@@ -59,8 +59,6 @@ function stampTool() {
     input.hide();
 
   }
-
-  c.mousePressed()
 
   this.draw = function() {
     imgSizeVal = imgSizeSlider.value();

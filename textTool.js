@@ -147,7 +147,7 @@ class TextTool {
       sizeSlider.style('width', '256px');
 
       sizeDisplay = createP('');
-      sizeDisplay.position(425, windowHeight - 40);
+      sizeDisplay.position(420, windowHeight - 46);
 
       // create drop down menu to select text style
       selectStyle = createSelect();

@@ -37,14 +37,6 @@ function HelperFunctions() {
 	  }
 		// when mouse is clicked, save the state of the canvas
 	  switchCanvas.saveState();
-
-		// if (self.editMode & self.defaultSettings) {
-		// 	self.defaultSettings = false;
-		//   console.log('EDIT MODE IS ON ...');
-		// })
-
 	})
-
-
 
 }

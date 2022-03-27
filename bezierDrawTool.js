@@ -16,7 +16,7 @@ function mousePressOnCanvas(c) {
 
 class BezierDrawTool {
   constructor() {
-    this.icon = "assets/vector.png";
+    this.icon = "assets/vector.jpg";
     this.name = "BezierCurve";
 
     let startMouseX = -1;
@@ -184,7 +184,8 @@ class BezierDrawTool {
 
     this.populateOptions = function() {
       commitButton = createButton('Commit Shape');
-      commitButton.position(20, windowHeight);
+      commitButton.position(450, windowHeight - 115);
+      commitButton.size(150, 50);
       commitButton.mousePressed(switchMode);
     }
 

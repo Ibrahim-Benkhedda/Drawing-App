@@ -2,12 +2,20 @@ html, body {
   margin: 0px;
   height: 100%;
   font-family: monospace;
+  color: white;
 }
 
-button {
-
+p {
+  font-size: 18px;
+  color: white;
+  text-decoration: underline;
 }
 
+.nav-btn {
+  margin-left: 5px;
+  background-color: e7e7e7;
+  color: black;
+}
 #sidebar {
 	grid-area: sidebar;
 	overflow-y: scroll;
@@ -29,15 +37,17 @@ button {
 .sideBarItem{
 	max-height: 50px;
 	max-width: 50px;
-	padding:5px;
+	padding: 7px;
 }
 
 .sideBarItem img{
-	max-height: 50px;
-	max-Width:50px;
+  cursor: pointer;
+	max-height: 45px;
+	max-Width: 45px;
 }
 
 .colourPalette{
+  cursor: pointer;
 	grid-area: colourP;
 	display:flex;
 	flex-direction:grid;
@@ -60,17 +70,17 @@ button {
 
 
 	.wrapper {
-		display: grid;
-		height: 100%;
-		grid-template-columns: 70px 230px  minmax(500px, 1fr);
-		grid-template-rows: 35px minmax(500px, 1fr) 160px;
-		grid-template-areas:
-               "header header header"
-				"sidebar content content"
-                "colourP colourP options";
-		background-color: #fff;
-		color: #444;
-	}
+  display: grid;
+  height: 100%;
+  grid-template-columns: 70px 230px minmax(500px, 1fr);
+  grid-template-rows: 35px minmax(500px, 1fr) 160px;
+  grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "colourP colourP options";
+  background-color: #fff;
+  color: #444;
+}
 .box {
   background-color: #444;
   color: #fff;
