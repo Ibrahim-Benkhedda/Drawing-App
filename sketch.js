@@ -10,6 +10,7 @@ var helpers = null;
 var switchCanvas = null;
 
 var bezierTool;
+var bezierTool
 
 // images
 var crystal_img;
