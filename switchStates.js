@@ -1,4 +1,11 @@
-// Explanation 
+// https://editor.p5js.org/stalgiag/sketches/ynaav4MsI
+
+// Explanation
+// save the state of the canvas by getting every pixel of the canvas using when
+//  the user updates the canvas pixels in the previousStates dynamic array.
+// when the user clicks undo, it access the last elements of the dynamic array decrements
+// when the user clicks on the redo, it acces the current stateindex and increments u, the PreviousStates array
+
 
 class SwitchStates {
   constructor() {

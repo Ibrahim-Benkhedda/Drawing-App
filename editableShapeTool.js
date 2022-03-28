@@ -27,7 +27,6 @@ function editableShapeTool() {
   this.draw = function() {
     updatePixels();
     if (mouseIsPressed && helpers.mousePressOnCanvas(c)) {
-      console.log('mousepressedoncanvas')
       // when the Edit mode is false
       if (!editMode) {
         // pushes the X and Y coordinate of the mouse to the vertex to the currentShape Array
@@ -57,6 +56,7 @@ function editableShapeTool() {
     // draws each vertex
     beginShape();
     for (let i = 0; i < currentShape.length; i++) {
+      noFill();
       vertex(currentShape[i].x, currentShape[i].y);
       if (editMode) {
         fill('red');

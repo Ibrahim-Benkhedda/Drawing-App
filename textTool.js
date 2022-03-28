@@ -1,3 +1,12 @@
+// https://p5js.org/examples/dom-input-and-button.html
+// https://stackoverflow.com/questions/3368837/list-every-font-a-users-browser-can-display
+
+// 1-creates slider, drop down menu for font family, font style
+// 2-creates input field
+// 3-insert text in the input field
+// 4-user can customize the text with the HTML elments that are created
+// 5-if users click on the generate button, then the user can click on the canvas to display the text
+
 
 class TextTool {
 
@@ -7,6 +16,7 @@ class TextTool {
 
     self = this
 
+    // list of font familyies that are avaible in every Operating system by default
     const fontList = ['Arial',
     'Arial Black',
     'Bahnschrift',
@@ -68,6 +78,7 @@ class TextTool {
     'Yu Gothic',
     ]
 
+    // list of all font styles
     let styleList = ['Normal', 'Italic', 'Bold', 'BOLDITALIC'];
 
     let inputT, button, textInsert, str, currentFont, currentSize, currentStyle, selectFont, selectStyle, sizeSlider, sizeDisplay;
@@ -80,7 +91,7 @@ class TextTool {
     }
 
     this.draw = function() {
-      // switch Font
+      // gets and display the current value of the sliders and drop down menus
       currentFont = selectFont.value();
       textFont(`${currentFont}`);
       currentSize = sizeSlider.value();
@@ -94,15 +105,14 @@ class TextTool {
       // display the INPUT text
       if (mouseIsPressed) {
         if (str != null && helpers.mousePressOnCanvas(c)) {
-          console.log('drawing')
           textSize(currentSize);
-          fill(0);
           text(str, mouseX, mouseY);
         }
       }
     }
 
     this.populateOptions = function() {
+      // creates input Field
       inputT = createInput();
       inputT.size(350, 50);
       inputT.position(400, windowHeight - 132.5);
@@ -145,6 +155,7 @@ class TextTool {
     }
 
     this.unselectTool = function() {
+      // hides all the HTML elements of this tool
       inputT.hide();
       selectFont.hide();
       button.hide();

@@ -1,9 +1,4 @@
-// https://github.com/shiffman/LearningProcessing/blob/master/chp15_images_pixels/exercise_15_07_image_processing/exercise_15_07_image_processing.pde
-
 class FiltersTool {
-  // store all possible avaible filters and if the filter have slider,
-  // it stores slider method which enable the current filter slider and hide others
-
   constructor() {
 
     self = this
@@ -16,12 +11,16 @@ class FiltersTool {
     let commitFilterBtn;
 
     let blurSlider;
+    let blurValDisplay;
     let posterizeSlider;
+    let posterizeValDisplay;
 
+    // store all possible avaible filters name and if the filter have slider,
+    // it stores slider method which enable the current filter slider and hide others
     let filters = [
       {name: 'Invert'},
-      {name: 'Blur', slider() {blurSlider.show(); posterizeSlider.hide()}},
-      {name: 'Posterize', slider() {posterizeSlider.show(); blurSlider.hide()}},
+      {name: 'Blur', slider() {blurSlider.show(); blurValDisplay.show(); posterizeSlider.hide(); posterizeValDisplay.hide()}},
+      {name: 'Posterize', slider() {posterizeSlider.show(); posterizeValDisplay.show(); blurSlider.hide(); blurValDisplay.hide();}},
       {name: 'Erode'},
       {name: 'Gray'},
       {name: 'ASCII'}
@@ -30,7 +29,13 @@ class FiltersTool {
     // COMMIT THE FILTER TO THE CANVAS
     this.draw = function() {
       // store the current filter name
-      let name = selectFilter.value();; // identitfy the name of the filter
+      let name = selectFilter.value(); // identitfy the name of the filter
+      // get the value of the slider and display it
+      let blurVal = blurSlider.value();
+      let postVal = posterizeSlider.value();
+      blurValDisplay.html(`Intensity ${blurVal}`);
+      posterizeValDisplay.html(`Value ${postVal}`);
+
 
       // if the user pressed the commit button, display and commit the current filter
       // in the canvas
@@ -38,46 +43,40 @@ class FiltersTool {
         // checks if a filter have sliders
         if (filters[i].name == name && 'slider' in filters[i]) {
           // display the filter sliders/HTML elements in the UI and break from the loop
-          console.log('has slider');
           filters[i].slider();
           break;
         }
         // if the filter doesn't have slider
         else if (!('slider' in filters[i])) {
-          // hide sliders
+          // hide sliders and their values
           blurSlider .hide();
           posterizeSlider.hide();
+          blurValDisplay.hide();
+          posterizeValDisplay.hide();
         }
       }
 
 
       if (isPressed) {
-        console.log('condition activated')
         // --- chekcs the id which is the name of the filter and call filter's function --- //
         switch (name) {
           case 'Invert':
-            console.log('INVERT Activated...');
-            this.invertPixels();
+            invertPixels();
             break;
           case 'Blur':
-            console.log('BLUR...');
-            this.blurPixels();
+            blurPixels();
             break;
           case 'Posterize':
-            console.log('Posterize...')
-            this.posterizePixels(10)
+            posterizePixels()
             break;
           case 'Erode':
-            console.log('ERODE...')
-            this.erodePixels(125);
+            erodePixels();
             break;
           case 'Gray':
-            console.log('GRAY...')
-            this.grayPixels();
+            grayPixels();
             break;
           case 'ASCII':
-            console.log('ASCII...');
-            this.asciiPixels();
+            asciiPixels();
             break;
           default:
             // return null;
@@ -107,7 +106,7 @@ class FiltersTool {
       }
 
       // DOM for Commit button
-      commitFilterBtn = createButton('Draw Filter');
+      commitFilterBtn = createButton('Apply Filter');
       commitFilterBtn.position(500, windowHeight - 125);
       commitFilterBtn.size(200, 35);
 
@@ -115,15 +114,24 @@ class FiltersTool {
 
       // BLUR DOM
       blurSlider  = createSlider(0, 4);
-      blurSlider.position(410, windowHeight - 75);
+      blurSlider.position(450, windowHeight - 75);
       blurSlider.size(300);
       blurSlider.hide();
 
+      blurValDisplay = createP('');
+      blurValDisplay.position(300, windowHeight - 97.5);
+      blurValDisplay.hide();
+
+
       // POSTERIZE DOM
       posterizeSlider = createSlider(2, 255);
-      posterizeSlider.position(410, windowHeight - 75);
+      posterizeSlider.position(450, windowHeight - 75);
       posterizeSlider.size(300);
       posterizeSlider.hide();
+
+      posterizeValDisplay = createP('');
+      posterizeValDisplay.position(300, windowHeight - 97.5);
+      posterizeValDisplay.hide();
     }
 
     this.unselectTool = function() {
@@ -131,62 +139,62 @@ class FiltersTool {
       posterizeSlider.hide();
       selectFilter.hide();
       commitFilterBtn.hide();
+      blurValDisplay.hide();
+      posterizeValDisplay.hide();
     }
 
-  }
+    //  --- ALL FILTERS FUNCTIONALITY --- //
 
-
-
-  //  --- ALL FILTERS FUNCTIONALITY --- //
-
-  invertPixels() {
-    console.log('inverting...')
-    filter(INVERT);
-  }
-
-  blurPixels() {
-    console.log('blurring...')
-    let val = blurSlider.value();
-    filter(BLUR, val);
-  }
-
-  posterizePixels(num) {
-    console.log('posterizing...')
-    this.num = num;
-    if (this.num > 0 && this.num < 255); {
-      filter(POSTERIZE, num);
+    function invertPixels() {
+      filter(INVERT);
     }
-  }
 
-  erodePixels() {
-    console.log('eroding...')
-    filter(ERODE);
-  }
+    function blurPixels() {
+      let val = blurSlider.value();
+      filter(BLUR, val);
+    }
 
-  grayPixels() {
-    console.log('GRAY')
-    filter(GRAY);
-  }
+    function posterizePixels() {
+      let val = posterizeSlider.value();
+      filter(POSTERIZE, val);
 
-  // REFRENCE: ASCII FILTER P439 PDF CREATING PROCEDURAL PROCESSING
-  asciiPixels() {
-    textSize(10);
-    for (let y = 0; y < c.height; y += 10) {
-      for (let x = 0; x < c.width; x += 10) {
-        let b = brightness(get(x, y))
-        fill(255);
-        if (b < 10) {
+    }
+
+    function erodePixels() {
+      filter(ERODE);
+    }
+
+    function grayPixels() {
+      filter(GRAY);
+    }
+
+    // REFRENCE: ASCII FILTER P439 PDF CREATING PROCEDURAL PROCESSING
+
+    // a filter that turns the canvas into an ASCII/Binary Art,
+    // works best with high contrast picture
+    function asciiPixels() {
+      textSize(10);
+      for (let y = 0; y < c.height; y += 10) {
+        for (let x = 0; x < c.width; x += 10) {
+          let b = brightness(get(x, y))
+          noStroke();
           fill(255);
-          text("0", x, y)
-        }
-        else if (b < 30) {
-          text("1", x, y);
-        }
-        else if (b < 180) {
-          text(".", x, y);
+          // if the brightness of the colour is less than 10 draw 0s
+          if (b < 10) {
+            fill(255);
+            text("0", x, y);
+          }
+          // if the brightness of the colour is less than 30 draw 1s
+          else if (b < 30) {
+            text("1", x, y);
+          }
+          else if (b < 180) {
+            text(".", x, y);
+          }
         }
       }
     }
+
   }
 
 

@@ -8,11 +8,14 @@ function triangleDrawTool() {
   let startMouseY = -1;
   let drawing = false;
 
-  // draws triangle to the canvas
-  this.draw = function() {
+  const isFill = ['Fill', 'noFill'];
+  let selectFill;
 
-    // only draw when the mouse is Pressed
-    if(mouseIsPressed) {
+  // draws triangle to the canvas
+  this.draw = () => {
+
+    // only draw when the mouse is Pressed and the mouseY is not on the UI
+    if(mouseIsPressed && mouseY < windowHeight - 180) {
       // if it's the start of the drawing a new triangle
       if(startMouseX == -1) {
         startMouseX = mouseX;
@@ -27,17 +30,20 @@ function triangleDrawTool() {
         updatePixels();
         // draw the Triangle
         noFill();
-        strokeWeight(5);
+        strokeWeight(3);
 
-        
+        selectFill.value() == "Fill" ? fill(colourP.selectedColour) : noFill();
+
         triangle(
           startMouseX,
           startMouseY,
           (startMouseX + mouseX) / 2,
-          mouseY - (mouseY / 2),
+          mouseY - (mouseY / 4),
           mouseX,
           mouseY
         );
+
+        noFill();
       }
     }
 
@@ -49,5 +55,21 @@ function triangleDrawTool() {
       startMouseX = -1;
       startMouseY = -1;
     }
+  }
+
+  this.populateOptions = () => {
+    selectFill = createSelect();
+    selectFill.size(100, 35);
+    selectFill.position(400, windowHeight - 125);
+
+    // Display all the possible filters in the drop down menu from the filters
+    // array of objects
+    for (let i in isFill) {
+      selectFill.option(`${isFill[i]}`);
+    }
+  }
+
+  this.unselectTool = () => {
+    selectFill.hide();
   }
 }

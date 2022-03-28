@@ -1,15 +1,17 @@
-
 function RectangleDrawTool() {
   this.icon = "assets/rectangle.jpg";
   this.name = "Rectangle";
 
 
-  var startMouseX = - 1;
-  var startMouseY = - 1;
-  var drawing = false;
+  let startMouseX = - 1;
+  let startMouseY = - 1;
+  let drawing = false;
+
+  const isFill = ['Fill', 'noFill'];
+  let selectFill;
 
   // draws rectanle to the screen
-  this.draw = function() {
+  this.draw = () => {
     // only draw when the mouse is pressed
     if(mouseIsPressed) {
       if(startMouseX == -1) {
@@ -22,9 +24,13 @@ function RectangleDrawTool() {
       else {
         updatePixels();
         //draw rectangle shape
-        strokeWeight(2);
+        strokeWeight(3);
         noFill();
+
+        selectFill.value() == "Fill" ? fill(colourP.selectedColour) : noFill();
+
         rect(startMouseX, startMouseY, mouseX - startMouseX, mouseY - startMouseY);
+        noFill();
       }
     }
 
@@ -34,6 +40,22 @@ function RectangleDrawTool() {
       startMouseX = -1;
       startMouseY = -1;
     }
+  }
+
+  this.populateOptions = () => {
+    selectFill = createSelect();
+    selectFill.size(100, 35);
+    selectFill.position(400, windowHeight - 125);
+
+    // Display all the possible filters in the drop down menu from the filters
+    // array of objects
+    for (let i in isFill) {
+      selectFill.option(`${isFill[i]}`);
+    }
+  }
+
+  this.unselectTool = () => {
+    selectFill.hide();
   }
 
 };

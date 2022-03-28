@@ -1,5 +1,16 @@
+// - this tool draws a bezier curve click and holding on the mouse,
+// - after releasing the mouse, the user can edit the control points and commit the shape to the canvas
+// - the bezier curve consists of 4 points, p0, p1, p2, p3
+// - p0 is the start point where the user pressed the mouse for the first time in the canvas
+// - p1 and p2 are the anchor/control points of that define the smoothnes of the curve
+// - when the user start drawing the bezier curve for the first time, p1 and p2 are calculated by default
+// - p3 is the end point where when the mouse is hold, it follows the mouseX and mouseY coordinates
+// - when the mouse is released the user can edit the control points
+// - when the commit button is pressed, the bezier curve will be drawn in the canvas
+// - when in edit mode, the tool keeps track of the last coordinates by pushing,
+//   the latest coordinates into array of object and pop the previous object in the array
+// - when the commit button is pressed set the values of the points from the array of object
 
-// draws bezier curve
 
 class BezierDrawTool {
   constructor() {
@@ -79,7 +90,6 @@ class BezierDrawTool {
 
     function switchMode() {
       if (editMode && isDrawing == true) {
-        console.log('commit intialed...');
         editMode = false;
       }
     }

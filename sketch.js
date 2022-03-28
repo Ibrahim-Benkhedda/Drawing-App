@@ -1,15 +1,13 @@
 //global variables that will store the toolbox colour palette
 //amnd the helper functions
-var toolbox = null;
-var colourP = null;
-var helpers = null;
-var switchCanvas = null;
-
-var bezierTool;
+let toolbox = null;
+let colourP = null;
+let helpers = null;
+let switchCanvas = null;
 
 // images
-var crystal_img;
-var c;
+let crystal_img;
+let c;
 
 function preload() {
 	crystal_img = loadImage('./assets/crystal.png');
@@ -30,8 +28,6 @@ function setup() {
 	//create a toolbox for storing the tools
 	toolbox = new Toolbox();
 
-	bezierTool = new BezierDrawTool();
-
 	//add the tools to the toolbox.
 	toolbox.addTool(new FreehandTool());
 	toolbox.addTool(new LineToTool());
@@ -44,7 +40,7 @@ function setup() {
 
 	toolbox.addTool(new editableShapeTool());
 	toolbox.addTool(new FiltersTool());
-	toolbox.addTool(bezierTool);
+	toolbox.addTool(new BezierDrawTool());
 	toolbox.addTool(new stampTool());
 	toolbox.addTool(new TextTool());
 
