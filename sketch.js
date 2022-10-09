@@ -44,7 +44,7 @@ function setup() {
 	toolbox.addTool(new stampTool());
 	toolbox.addTool(new TextTool());
 
-	switchCanvas = new switchStates();
+	switchCanvas = new SwitchStates();
 
 	background(255);
 
