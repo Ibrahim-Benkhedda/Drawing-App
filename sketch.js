@@ -40,9 +40,9 @@ function setup() {
 
 	toolbox.addTool(new editableShapeTool());
 	toolbox.addTool(new FiltersTool());
-	toolbox.addTool(new bezierDrawTool());
+	toolbox.addTool(new BezierDrawTool());
 	toolbox.addTool(new stampTool());
-	toolbox.addTool(new textTool());
+	toolbox.addTool(new TextTool());
 
 	switchCanvas = new switchStates();
 
